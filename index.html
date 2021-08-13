@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>組件範例</title>
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    [v-cloak] {
+      display: none;
+    }
+  </style>
+</head>
+
+<body class="">
+  <div id="app">
+    <div class="hidden">
+      <input type="hidden" id="cheerfulgive">
+    </div>
+
+    <header class="h-18 p-4 bg-gray-900 text-white flex items-center">
+      <div class="text-2xl font-bolded flex-1">組件範例</div>
+    </header>
+
+    <form class="border mx-auto max-w-3xl p-8 m-2 bg-gray-100">
+      <div class="pt-2">
+        標題：
+        <label><input type="radio" name="title" value="1" v-model="title"> 有</label>
+        <label><input type="radio" name="title" value="0" v-model="title" class="ml-3"> 無</label>
+      </div>
+
+      <div class="pt-2">
+        圖片：
+        <label><input type="radio" name="pic" value="1" v-model="pic"> 有</label>
+        <label><input type="radio" name="pic" value="0" v-model="pic" class="ml-3"> 無</label>
+      </div>
+
+      <div class="pt-2">
+        彈性欄位：
+        <label><input type="radio" name="custom" value="1" v-model="custom"> 顯示</label>
+        <label><input type="radio" name="custom" value="0" v-model="custom" class="ml-3"> 隱藏</label>
+      </div>
+
+      <div class="pt-2">
+        加入購物車按鈕：
+        <label><input type="radio" name="cart" value="1" v-model="cart"> 顯示</label>
+        <label><input type="radio" name="cart" value="0" v-model="cart" class="ml-3"> 隱藏</label>
+      </div>
+
+      <div class="pt-2">
+        立即結帳按鈕：
+        <label><input type="radio" name="check" value="1" v-model="check"> 顯示</label>
+        <label><input type="radio" name="check" value="0" v-model="check" class="ml-3"> 隱藏</label>
+      </div>
+
+      <hr class="my-3">
+
+      <div class="pt-2">
+        固定單價：
+        <label><input type="radio" name="fixed" value="1" v-model="fixed"> 是</label>
+        <label><input type="radio" name="fixed" value="0" v-model="fixed" class="ml-3"> 否</label>
+      </div>
+
+      <div class="pt-2">
+        快捷金額 (<span class="text-red-500">非固定</span>)：
+        <label><input type="radio" name="quick" value="1" v-model="quick"> 有</label>
+        <label><input type="radio" name="quick" value="0" v-model="quick" class="ml-3"> 無</label>
+      </div>
+
+      <div class="pt-2">
+        單位 (<span class="text-red-500">固定</span>)：
+        <label><input type="radio" name="unit" value="1" v-model="unit"> 有</label>
+        <label><input type="radio" name="unit" value="0" v-model="unit" class="ml-3"> 無</label>
+      </div>
+
+      <div class="pt-2">
+        可選數量 (<span class="text-red-500">固定</span>)：
+        <label><input type="radio" name="isStock" value="1" v-model="isStock"> 可</label>
+        <label><input type="radio" name="isStock" value="0" v-model="isStock" class="ml-3"> 不可</label>
+      </div>
+
+      <div class="pt-2">
+        顯示進度 (<span class="text-red-500">固定</span>)：
+        <label><input type="radio" name="percent" value="1" v-model="percent"> 顯示</label>
+        <label><input type="radio" name="percent" value="0" v-model="percent" class="ml-3"> 隱藏</label>
+      </div>
+
+      <button type="submit" class="bg-blue-600 hover:bg-blue-300 text-white px-4 py-2 mt-6">送出</button>
+    </form>
+
+    <div class="cheerfulgive-add-cart"
+      data-product-id="wayne-test"
+      :data-title-label="title == 1 ? '文殊讚雲海' : ''"
+      :data-subtitle-label="title == 1 ? '單冊200，一組10冊（每人上限4組運費80）' : ''"
+      :data-pic-default="pic == 1 ? 'https://picsum.photos/250/150' : ''"
+      :data-is-fixed-price="fixed == 1"
+      data-custom-amount="2000"
+      :data-unit="unit == 1 ? '組' : ''"
+      :data-is-stock="isStock == 1"
+      data-salable-stock="8000"
+      data-max-quantity="5"
+      data-min-quantity="1"
+      data-default-quantity="1"
+      :data-show-sold-percentage="percent == 1"
+      :data-item-custom1-id="custom == 1 ? 'A-123456' : ''"
+      data-item-custom1-name="贊助回饋"
+      data-item-custom1-type="fieldDropdown"
+      data-item-custom1-value="５冊自受持＋助印５冊[5]"
+      data-item-custom1-required="true"
+      data-item-custom1-options="５冊自受持＋助印５冊,AA[5]|2冊自受持＋助印8冊,BB[15]"
+      :data-item-custom2-id="custom == 1 ? 'A-789012' : ''"
+      data-item-custom2-name="其他備註"
+      data-item-custom2-type="fieldText"
+      data-item-custom2-value=""
+      data-item-custom2-required="false"
+      :data-cart-label="cart == 1 ? '加入購物車' : ''"
+      :data-check-label="check == 1 ? '立即結帳' : ''"
+      :data-custom-default-amount="quicl == 1 ? '100|300|500' : ''"
+      >
+    </div>
+  </div>
+
+  <script src="./scripts.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router"></script>
+  <script>
+  var router = new VueRouter({
+    mode: 'history',
+    routes: []
+  });
+  var app = new Vue({
+    router,
+    el: '#app',
+    data() {
+      return {
+        title: this.$route.query.title ?? 0,
+        pic: this.$route.query.pic ?? 0,
+        unit: this.$route.query.unit ?? 0,
+        isStock: this.$route.query.isStock ?? 0,
+        percent: this.$route.query.percent ?? 0,
+        custom: this.$route.query.custom ?? 0,
+        cart: this.$route.query.cart ?? 0,
+        check: this.$route.query.check ?? 0,
+        fixed: this.$route.query.fixed ?? 0,
+        quick: this.$route.query.quick ?? 0,
+      }
+    },
+    created() {
+
+    }
+  })
+  </script>
+</body>
+
+</html>
