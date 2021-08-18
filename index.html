@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>組件範例</title>
   <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="../public/styles.css" />
   <style>
     html {
       scroll-behavior: smooth;
@@ -26,9 +26,12 @@
 
     <header class="h-18 p-4 bg-gray-900 text-white flex items-center">
       <div class="text-2xl font-bolded flex-1">組件範例</div>
+      <div class="cheerfulgive-cart-login"></div>
     </header>
 
-    <form class="border mx-auto max-w-3xl p-8 m-2 bg-gray-100">
+    <!-- <div class="cheerfulgive-cart"></div> -->
+
+    <form class="border mx-auto max-w-3xl p-4 m-2 bg-gray-100">
       <div class="pt-2">
         標題：
         <label><input type="radio" name="title" value="1" v-model="title"> 有</label>
@@ -95,29 +98,31 @@
     </form>
 
     <div class="cheerfulgive-add-cart"
-      data-product-id="wayne-test"
+      data-product-id="wayne-test2"
       :data-title-label="title == 1 ? '文殊讚雲海' : ''"
       :data-subtitle-label="title == 1 ? '單冊200，一組10冊（每人上限4組運費80）' : ''"
-      :data-pic-default="pic == 1 ? 'https://picsum.photos/250/150' : ''"
+      :data-pic-default="pic == 1 ? 'https://demo.4family.co/cheerfulgive/default.png' : ''"
       :data-is-fixed-price="fixed == 1"
       data-custom-amount="2000"
       :data-unit="unit == 1 ? '組' : ''"
       :data-is-stock="isStock == 1"
       data-salable-stock="8000"
-      data-max-quantity="5"
+      data-max-quantity="10"
       data-min-quantity="1"
+      data-max-price="50000"
+      data-min-price="100"
       data-default-quantity="1"
       :data-show-sold-percentage="percent == 1"
-      :data-item-custom1-id="custom == 1 ? 'A-123456' : ''"
+      :data-item-custom1-id="custom == 1 ? 'product-custom-field-7375a02e-5809-435b-a09a-23f4fcb03e97' : ''"
       data-item-custom1-name="贊助回饋"
       data-item-custom1-type="fieldDropdown"
-      data-item-custom1-value="５冊自受持＋助印５冊[5]"
+      data-item-custom1-value=""
       data-item-custom1-required="true"
-      data-item-custom1-options="５冊自受持＋助印５冊,AA[5]|2冊自受持＋助印8冊,BB[15]"
-      :data-item-custom2-id="custom == 1 ? 'A-789012' : ''"
+      data-item-custom1-options="方案一有圖,AA,https://demo.4family.co/cheerfulgive/1.png|方案二無圖,BB|方案三有圖,CC,https://demo.4family.co/cheerfulgive/2.png"
+      :data-item-custom2-id="custom == 1 ? 'product-custom-field-a909d57c-d40c-45be-af11-ccaaa2f70e6f' : ''"
       data-item-custom2-name="其他備註"
       data-item-custom2-type="fieldText"
-      data-item-custom2-value=""
+      data-item-custom2-value="一些文字"
       data-item-custom2-required="false"
       :data-cart-label="cart == 1 ? '加入購物車' : ''"
       :data-check-label="check == 1 ? '立即結帳' : ''"
@@ -126,7 +131,7 @@
     </div>
   </div>
 
-  <script src="./scripts.js"></script>
+  <script src="../public/scripts.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
   <script src="https://unpkg.com/vue-router"></script>
   <script>
@@ -139,16 +144,16 @@
     el: '#app',
     data() {
       return {
-        title: this.$route.query.title ?? 0,
-        pic: this.$route.query.pic ?? 0,
-        unit: this.$route.query.unit ?? 0,
-        isStock: this.$route.query.isStock ?? 0,
-        percent: this.$route.query.percent ?? 0,
-        custom: this.$route.query.custom ?? 0,
-        cart: this.$route.query.cart ?? 0,
-        check: this.$route.query.check ?? 0,
-        fixed: this.$route.query.fixed ?? 0,
-        quick: this.$route.query.quick ?? 0,
+        title: this.$route.query.title ?? 1,
+        pic: this.$route.query.pic ?? 1,
+        unit: this.$route.query.unit ?? 1,
+        isStock: this.$route.query.isStock ?? 1,
+        percent: this.$route.query.percent ?? 1,
+        custom: this.$route.query.custom ?? 1,
+        cart: this.$route.query.cart ?? 1,
+        check: this.$route.query.check ?? 1,
+        fixed: this.$route.query.fixed ?? 1,
+        quick: this.$route.query.quick ?? 1,
       }
     },
     created() {
